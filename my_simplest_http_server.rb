@@ -28,6 +28,11 @@ class MyHTTPServer
 
       # make an actual path from request line
       path = requested_file req_line
+
+      # TODO: if POST request and the path is 'comments/insert', then do it accordingly
+      msg_body = ''
+      insert_comment(msg_body)
+
       # defaults to index.html if endpoint is directory
       path = File.join(path,'index.html') if File.directory?(path)
 
@@ -58,6 +63,12 @@ class MyHTTPServer
 
       socket.close
     end
+  end
+
+  def insert_comment(msg_body)
+    # File.open(comments.json, 'w') do |file|
+    #  insert parsed_msg_body
+    # end
   end
 
   def content_type(path)
