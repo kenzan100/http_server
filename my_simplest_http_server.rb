@@ -22,9 +22,13 @@ class MyHTTPServer
   def start
     loop do
       socket = @server.accept
-      req_line = socket.gets
 
+      req_line = socket.gets
       STDERR.puts req_line
+
+      while socket.gets != "\r\n"
+        STDERR.puts socket.gets
+      end
 
       # make an actual path from request line
       path = requested_file req_line
